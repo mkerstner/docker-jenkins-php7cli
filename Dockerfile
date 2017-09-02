@@ -13,7 +13,10 @@ RUN apt-get install -y software-properties-common curl
 RUN add-apt-repository ppa:ondrej/php
 
 RUN apt-get update
-RUN apt-get install -y --allow-unauthenticated php7.1
+RUN apt-get install -y --allow-unauthenticated php7.0 php7.0-mbstring php7.0-exif
+
+# optional PHP extensions you might need
+RUN apt-get install -y --allow-unauthenticated php7.0-mbstring php7.0-exif
 
 # if it fails you need to install python-software-properties too
 # especially on older Ubuntu versions :
