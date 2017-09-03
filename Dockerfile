@@ -1,12 +1,13 @@
 FROM jenkins/jenkins:lts
 
+USER root
+
 # overwrite jenkins/jenkins:lts settings
 RUN mkdir /jenkins_home_vol
 ENV JENKINS_HOME /jenkins_home_vol
 VOLUME /jenkins_home_vol
 
-USER root
-
+# install additional packages
 RUN apt-get update 
 RUN apt-get install -y software-properties-common curl
 
