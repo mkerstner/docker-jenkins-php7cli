@@ -1,5 +1,10 @@
 FROM jenkins/jenkins:lts
 
+# overwrite jenkins/jenkins:lts settings
+RUN mkdir /jenkins_home_vol
+ENV JENKINS_HOME /jenkins_home_vol
+VOLUME /jenkins_home_vol
+
 USER root
 
 RUN apt-get update 
@@ -23,7 +28,3 @@ RUN apt-get install -y --allow-unauthenticated php7.0-mbstring php7.0-exif php7.
 # sudo apt-get install python-software-properties
 
 USER jenkins
-
-# overwrite jenkins/jenkins:lts settings
-ENV JENKINS_HOME /opt/jenkins_home
-VOLUME /opt/jenkins_home
