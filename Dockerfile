@@ -3,9 +3,11 @@ FROM jenkins/jenkins:lts
 USER root
 
 # overwrite jenkins/jenkins:lts settings
-RUN mkdir /jenkins_home_vol
-ENV JENKINS_HOME /jenkins_home_vol
-VOLUME /jenkins_home_vol
+RUN mkdir -p /opt/jenkins_home
+RUN chown -R jenkins:jenkins /opt/jenkins_home
+RUN cp -r /var/jenkins_home /opt/jenkins_home
+VOLUME /opt/jenkins_home
+ENV JENKINS_HOME /opt/jenkins_home
 
 # install additional packages
 RUN apt-get update 
